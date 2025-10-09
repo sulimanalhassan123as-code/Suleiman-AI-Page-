@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suleiman AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- ROOM 1: THE AI CHAT (Visible by default) -->
+        <div id="ai-view" class="view active-view">
+            <header>
+                <h1>Welcome, I am Suleiman's AI Assistant</h1>
+                <button id="show-story-btn" class="nav-button">Read My Story &rarr;</button>
+            </header>
+            <main>
+                <div id="chat-container" class="chat-container">
+                    <!-- Chat bubbles will be added here by JavaScript -->
+                </div>
+                <div class="input-area">
+                    <form id="ai-form">
+                        <input type="text" id="ai-question-input" placeholder="Ask a question..." autocomplete="off">
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+            </main>
+        </div>
+
+        <!-- ROOM 2: YOUR STORY (Hidden by default) -->
+        <div id="story-view" class="view">
+            <header>
+                <h1>The Story of Suleiman Alhassan</h1>
+                <button id="show-ai-btn" class="nav-button">&larr; Back to AI Chat</button>
+            </header>
+            <main>
+                <div class="story-content">
+                    <h2>My Journey</h2>
+                    <p>
+                        <!-- PASTE YOUR STORY HERE -->
+                        Hello, my name is Suleiman Alhassan. This is the beginning of my story as a developer. I have always been curious about how things work, and my journey into coding has been a long and challenging one, filled with many failures and small victories.
+                    </p>
+                    <p>
+                        This website itself is a testament to the power of not giving up. It was built with patience, determination, and the help of an AI assistant who taught me that even when things seem impossible, there is always a path forward if you are willing to learn and to try again.
+                    </p>
+                    <p>
+                        Thank you for visiting my page. Feel free to ask my AI assistant anything you like. It is a symbol of what can be achieved when we combine human creativity with the power of technology.
+                    </p>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+                  </html>
