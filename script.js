@@ -14,7 +14,6 @@ showAiBtn.addEventListener('click', () => {
     aiView.classList.add('active-view');
 });
 
-
 // --- GEMINI AI CHAT LOGIC ---
 const aiForm = document.getElementById('ai-form');
 const aiQuestionInput = document.getElementById('ai-question-input');
@@ -56,7 +55,8 @@ aiForm.addEventListener('submit', async function(event) {
 function addBubble(text, className) {
     const bubble = document.createElement('div');
     bubble.classList.add('chat-bubble', className);
-    bubble.innerHTML = text; // Use innerHTML to allow for formatting later
+    // Use textContent to avoid accidental HTML injection; if you want formatting, you can still use innerHTML
+    bubble.innerHTML = text;
     chatContainer.appendChild(bubble);
     // Scroll to the bottom of the chat
     chatContainer.scrollTop = chatContainer.scrollHeight;
@@ -65,10 +65,10 @@ function addBubble(text, className) {
 
 function updateBubble(bubble, newText) {
     // Format the text (bold, italics, new lines)
-    let formattedText = newText
+    let formattedText = (newText || '')
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.*?)\*/g, '<em>$1</em>')
         .replace(/\n/g, '<br>');
     bubble.innerHTML = formattedText;
-    chatContainer.scrollTop = chat-container.scrollHeight;
-                        }
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
