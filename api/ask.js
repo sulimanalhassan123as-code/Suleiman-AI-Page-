@@ -34,3 +34,5 @@ module.exports = async (request, response) => {
   } catch (error) {
     console.error("Error in /api/ask:", error);
     response.status(500).json({ error: "Sorry, I could not process your question at this time." });
+  }
+};
