@@ -1,209 +1,195 @@
-/*-- 1. DYNAMIC 3D BACKGROUND --*/
-@keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* === 1. BACKGROUND: 3D NEBULA WITH FLOATING LIGHTS === */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes floatLights {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+  100% { transform: translateY(0) rotate(360deg); }
 }
 
 body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    /* Deep space background with multiple animated layers for depth */
-    background: linear-gradient(315deg, #1e1e32, #2d2d4d, #1e1e32);
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
-    color: #f3f4f6;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    box-sizing: border-box;
-    /*-- 2. APPLYING 3D PERSPECTIVE --*/
-    perspective: 1500px; /* This creates the 3D space */
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #0f0f1a, #1a1a3d, #1e1e4d, #0f0f1a);
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+  color: #f3f4f6;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1500px;
+  overflow: hidden;
+  position: relative;
 }
 
-/*-- 3. EXTRUDED 3D CONTAINER --*/
+/* === Floating glowing particles === */
+body::before, body::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(120,120,255,0.2), transparent 70%);
+  animation: floatLights 18s ease-in-out infinite;
+  filter: blur(60px);
+  z-index: 0;
+}
+body::after {
+  background: radial-gradient(circle, rgba(255,100,200,0.15), transparent 70%);
+  width: 800px;
+  height: 800px;
+  top: 30%;
+  left: 60%;
+  animation-delay: 5s;
+}
+
+/* === 2. MAIN CONTAINER === */
 .container {
-    width: 100%;
-    max-width: 700px;
-    height: 90vh;
-    max-height: 800px;
-    background: #2a2a45; /* Base color */
-    border-radius: 24px;
-    /* Complex shadow for a "pushed out" 3D effect */
-    /* It combines a highlight (top-left) and a shadow (bottom-right) */
-    box-shadow: 
-        10px 10px 30px rgba(0, 0, 0, 0.5),
-        -10px -10px 30px rgba(75, 75, 101, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transition: transform 0.5s ease;
-    /* Tilts the container slightly in the 3D space */
-    transform: rotateY(-5deg) rotateX(5deg);
+  width: 100%;
+  max-width: 720px;
+  height: 90vh;
+  background: rgba(32, 32, 55, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  box-shadow:
+    10px 10px 30px rgba(0, 0, 0, 0.6),
+    -10px -10px 30px rgba(120, 120, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: rotateY(-5deg) rotateX(5deg);
+  transition: transform 0.6s ease;
+  z-index: 1;
 }
+.container:hover { transform: rotateY(0deg) rotateX(0deg); }
 
-.container:hover {
-    /* Brings the container back to flat on hover for a nice interactive effect */
-    transform: rotateY(0deg) rotateX(0deg);
-}
-
-
-/* Header Styles */
+/* HEADER */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
-
 header h1 {
-    font-size: 1.5rem;
-    margin: 0;
-    font-weight: 500; /* Bolder for better visibility */
-    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  font-weight: 500;
+  font-size: 1.4rem;
+  margin: 0;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.4);
 }
-
-/* 3D "Pushed" Button */
 .nav-button {
-    background: linear-gradient(145deg, #5b52d9, #4f46e5);
-    border: none;
-    color: #ffffff;
-    padding: 0.6rem 1.2rem;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.4), -5px -5px 10px rgba(92, 85, 230, 0.3);
+  background: linear-gradient(145deg, #6b5df6, #5445e2);
+  border: none;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.4), -4px -4px 10px rgba(90,80,250,0.3);
+  transition: all 0.3s ease;
 }
-
+.nav-button:hover { transform: translateY(-2px); }
 .nav-button:active {
-    /* Inset shadow to look like it's being pressed IN */
-    box-shadow: inset 5px 5px 10px rgba(0,0,0,0.4), inset -5px -5px 10px rgba(92, 85, 230, 0.3);
-    transform: translateY(1px); /* Slight downward move */
+  box-shadow: inset 4px 4px 10px rgba(0,0,0,0.5);
+  transform: translateY(1px);
 }
 
-/* Main Content Area */
+/* MAIN */
 main {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 1.5rem;
-    background-color: rgba(0,0,0,0.1); /* Slightly darker chat area for contrast */
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  background: rgba(0,0,0,0.2);
 }
 
-/* AI Chat Styles */
-.chat-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
+/* CHAT STYLES */
+.chat-container { display: flex; flex-direction: column; gap: 1.3rem; }
 .chat-bubble {
-    padding: 1rem 1.5rem;
-    border-radius: 20px;
-    max-width: 80%;
-    line-height: 1.6;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    /* Soft 3D effect for bubbles */
-    box-shadow: 4px 4px 8px rgba(0,0,0,0.3), -4px -4px 8px rgba(75, 75, 101, 0.2);
+  padding: 1rem 1.5rem;
+  border-radius: 20px;
+  max-width: 80%;
+  line-height: 1.6;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.1);
 }
-
 .user-bubble {
-    background: linear-gradient(145deg, #4f46e5, #6366f1);
-    color: #ffffff;
-    align-self: flex-end;
-    border-bottom-right-radius: 4px;
+  background: linear-gradient(145deg, #5548e6, #6d61f4);
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
 }
-
 .ai-bubble {
-    background: #374151;
-    color: #d1d5db;
-    align-self: flex-start;
-    border-bottom-left-radius: 4px;
-    position: relative;
-    padding-left: 3.5rem; /* Space for emoji */
+  background: rgba(55, 60, 90, 0.9);
+  color: #d1d5db;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  padding-left: 3.5rem;
+  position: relative;
 }
-
 .ai-bubble::before {
-    content: '🎅';
-    font-size: 1.8rem;
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #2a2a45;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Inset shadow to make the emoji look embedded */
-    box-shadow: inset 3px 3px 6px rgba(0,0,0,0.5);
-    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5); /* Adds a little glow */
+  content: '🤖';
+  font-size: 1.8rem;
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #2a2a45;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 3px 3px 6px rgba(0,0,0,0.4);
 }
 
-
-/*-- 4. DEEPLY INSET INPUT AREA --*/
-.input-area {
-    padding: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-#ai-form {
-    display: flex;
-    gap: 1rem;
-}
-
+/* INPUT AREA */
+.input-area { padding: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
+#ai-form { display: flex; gap: 1rem; }
 #ai-question-input {
-    flex-grow: 1;
-    background-color: #1e1e32; /* Deep dark background */
-    border: none;
-    border-radius: 50px;
-    padding: 0.75rem 1.25rem;
-    font-size: 1rem;
-    color: #f3f4f6;
-    outline: none;
-    transition: all 0.3s ease;
-    /* Very strong inset shadow for a deep "carved out" effect */
-    box-shadow: inset 8px 8px 16px rgba(0, 0, 0, 0.6);
+  flex-grow: 1;
+  background: rgba(20,20,40,0.9);
+  border: none;
+  border-radius: 50px;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  color: white;
+  box-shadow: inset 6px 6px 14px rgba(0,0,0,0.6);
 }
-
 #ai-form button {
-    background: linear-gradient(145deg, #5b52d9, #4f46e5);
-    color: #ffffff;
-    border: none;
-    padding: 0 1.5rem;
-    border-radius: 50px;
-    font-size: 1rem;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    /* Matching 3D pushed style */
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.4), -5px -5px 10px rgba(92, 85, 230, 0.3);
+  background: linear-gradient(145deg, #6b5df6, #5445e2);
+  color: white;
+  border: none;
+  padding: 0 1.5rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.4), -4px -4px 10px rgba(90,80,250,0.3);
 }
-
+#ai-form button:hover { transform: translateY(-2px); }
 #ai-form button:active {
-    box-shadow: inset 5px 5px 10px rgba(0,0,0,0.4), inset -5px -5px 10px rgba(92, 85, 230, 0.3);
-    transform: translateY(1px);
+  box-shadow: inset 4px 4px 10px rgba(0,0,0,0.4);
+  transform: translateY(1px);
 }
 
-
-/* Unchanged Styles */
+/* STORY CONTENT */
 .story-content {
-    line-height: 1.8;
-    font-size: 1.1rem;
-    color: #d1d5db;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  color: #d1d5db;
 }
 .story-content h2 {
-    color: #a5b4fc;
-    font-weight: 400;
-    border-bottom: 1px solid #374151;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
+  color: #a5b4fc;
+  border-bottom: 1px solid #374151;
+  padding-bottom: 0.4rem;
+  margin-bottom: 1.2rem;
 }
 .view { display: none; flex-direction: column; height: 100%; }
 .view.active-view { display: flex; }
