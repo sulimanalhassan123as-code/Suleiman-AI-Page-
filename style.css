@@ -1,32 +1,219 @@
+/* General Body Styles */
 body {
-    background: linear-gradient(135deg, #0d3b66, #144a7c);
-    perspective: 1200px;
-    color: #ffffff;
-}.container {
-    background: linear-gradient(145deg, #1a3961, #25527a);
-    box-shadow:
-       0 15px 30px rgba(0, 0, 0, 0.7),
-       inset 0 0 15px rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    transform-style: preserve-3d;
-    transition: transform 0.3s ease;
-    color: #ffffff;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    /* Softer background to enhance the 3D effect */
+    background: #1e222a;
+    color: #f3f4f6;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
-header, main,.input-area {
-    background: linear-gradient(145deg, #244a7a, #1a395f);
-    box-shadow:
-       0 4px 6px rgba(0,0,0,0.6),
-       inset 0 0 5px rgba(255,255,255,0.05);
-    border-radius: 12px;
+/* 3D Glassmorphism Container */
+.container {
+    width: 100%;
+    max-width: 700px;
+    height: 90vh;
+    max-height: 800px;
+    /* Glassmorphism effect with a semi-transparent background and blur */
+    background: rgba(31, 41, 55, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px); /* For Safari */
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Soft shadow for a "floating" 3D effect */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    /* Subtle border to separate sections */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 400;
+    /* Text shadow for depth */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Modern 3D Button */
+.nav-button {
+    background: rgba(79, 70, 229, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffffff;
-}.nav-button, #ai-form button {
-    box-shadow: 0 5px 10px rgba(79, 70, 229, 0.5);
-    transition: box-shadow 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.nav-button:hover {
+    background-color: #6366f1;
+    /* Lift the button on hover for a 3D effect */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Main Content Area */
+main {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+
+/* AI Chat Styles */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Shared 3D Bubble Style */
+.chat-bubble {
+    padding: 1rem 1.5rem;
+    border-radius: 20px;
+    max-width: 80%;
+    line-height: 1.6;
+    /* Base shadow for all bubbles */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-bubble {
+    background: linear-gradient(145deg, #4f46e5, #6366f1);
     color: #ffffff;
-    border-color: #a5b4fc;
-}.nav-button:hover, #ai-form button:hover {
-    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.8);
-    background-color: #4f46e5;
+    align-self: flex-end;
+    /* Unique border-radius for a "chat tail" look */
+    border-bottom-right-radius: 4px;
+}
+
+.ai-bubble {
+    background: rgba(55, 65, 81, 0.7);
+    color: #d1d5db;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    position: relative;
+    /* Add padding to make space for the emoji */
+    padding-left: 3.5rem;
+}
+
+/* Adding the Santa Emoji with a 3D look */
+.ai-bubble::before {
+    content: '🎅';
+    font-size: 1.8rem;
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    /* Make the emoji appear inset */
+    background: #1f2937;
+    border-radius: 50%;
+    padding: 0.2rem;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+}
+
+
+/* AI Input Area */
+.input-area {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#ai-form {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Inset 3D Input Field */
+#ai-question-input {
+    flex-grow: 1;
+    background-color: #1e222a; /* Darker background */
+    border: none;
+    border-radius: 50px;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    color: #f3f4f6;
+    outline: none;
+    transition: all 0.3s ease;
+    /* Inner shadow to create an "inset" 3D effect */
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+#ai-question-input:focus {
+    /* Add a glow effect when the input is active */
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.5), 0 0 10px rgba(79, 70, 229, 0.5);
+}
+
+
+/* 3D Submit Button */
+#ai-form button {
+    background: linear-gradient(145deg, #4f46e5, #6366f1);
     color: #ffffff;
-    }
+    border: none;
+    padding: 0 1.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    /* Outer shadow for a "pushed out" effect */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#ai-form button:hover {
+    transform: translateY(-2px); /* Lifts the button */
+    box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.4);
+}
+
+#ai-form button:active {
+    /* Simulates the button being pressed down */
+    transform: translateY(1px);
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Story View Styles (Unchanged) */
+.story-content {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #d1d5db;
+}
+
+.story-content h2 {
+    color: #a5b4fc;
+    font-weight: 400;
+    border-bottom: 1px solid #374151;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* View Switching Logic (Unchanged) */
+.view {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+}
+.view.active-view {
+    display: flex;
+                                  }
